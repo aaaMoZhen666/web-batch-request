@@ -1,0 +1,18 @@
+display:
+  theme: light
+  fontSize: 14
+requestPresets:
+  queryParams: []
+  bodyParams: []
+  cookies: []
+  headers:
+  - key: User-Agent
+    value: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+      Gecko) Chrome/138.0.0.0 Safari/537.36
+    selected: true
+  - key: Content-Type
+    value: application/json
+  - key: Content-Type
+    value: application/x-www-form-urlencoded
+  - key: Content-Type
+    value: multipart/form-data

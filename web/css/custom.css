@@ -1,0 +1,440 @@
+/* 全局变量设置 */
+:root {
+    --bs-body-line-height: 1;
+    --font-size-sm: 12px;
+    --font-size-md: 14px;
+    --font-size-lg: 16px;
+
+    font-size: var(--font-size-md);
+}
+
+[data-bs-theme='dark'] {
+    --bs-body-bg: #2b2b2b;
+    --bs-secondary-bg-subtle: #323334;
+}
+
+/* 页面主体 */
+body {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* 按钮 */
+.btn {
+    --bs-btn-line-height: 1;
+
+    border-radius: 4px;
+}
+
+/* 输入组合 */
+.input-group-sm > .btn,
+.input-group-sm > .form-control,
+.input-group-sm > .form-select,
+.input-group-sm > .input-group-text {
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* 网格布局 */
+.row {
+    margin: 0;
+}
+
+.row > * {
+    padding: 0;
+}
+
+/* 表单控件 */
+.form-check {
+    display: inline-flex;
+    align-items: center;
+
+    margin-right: 8px;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.form-check .form-check-input[type='checkbox'] {
+    float: none;
+
+    margin: 0;
+    margin-right: 6px;
+    border-radius: 4px;
+
+    font-size: var(--font-size-lg);
+}
+
+/* 顶部菜单栏 */
+.nav {
+    --bs-nav-link-padding-x: 8px;
+    --bs-nav-link-padding-y: 4px;
+    --bs-nav-link-font-weight: 400;
+    --bs-nav-link-color: var(--bs-body-color);
+    --bs-nav-link-hover-color: var(--bs-body-color);
+
+    margin: 0;
+    padding: 6px 8px;
+    border-top: 1px solid var(--bs-border-color);
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+.nav .nav-link {
+    border-radius: 4px;
+}
+
+.nav .nav-link:hover,
+.nav .dropdown .nav-link:focus {
+    background-color: var(--bs-light-border-subtle);
+}
+
+.nav .dropdown .dropdown-menu {
+    --bs-dropdown-padding-x: 6px;
+    --bs-dropdown-padding-y: 4px;
+    --bs-dropdown-border-radius: 4px;
+    --bs-dropdown-item-padding-x: 15px;
+    --bs-dropdown-item-padding-y: 6px;
+    --bs-dropdown-item-border-radius: 4px;
+    --bs-dropdown-divider-margin-y: 5px;
+    --bs-dropdown-min-width: 0;
+}
+
+/* 工具栏 */
+.toolbar {
+    display: flex;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--bs-border-color);
+    background-color: var(--bs-secondary-bg-subtle);
+}
+
+.toolbar .btn {
+    --bs-btn-padding-x: 15px;
+    --bs-btn-padding-y: 7px;
+    --bs-btn-font-weight: 500;
+
+    margin-right: 12px;
+}
+
+/* 分割面板 & 间隔条 */
+.split {
+    overflow: hidden;
+    display: flex;
+    flex: 1;
+}
+
+.gutter {
+    background-color: var(--bs-border-color);
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+    cursor: col-resize;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+}
+
+.split-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.split-item .header {
+    padding: 10px;
+    border-bottom: 1px solid var(--bs-border-color);
+
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--bs-emphasis-color);
+}
+
+/* Tabulator 表格 */
+.tabulator {
+    border: none;
+    font-size: var(--font-size-md);
+    background-color: var(--bs-secondary-bg-subtle);
+}
+
+.tabulator a {
+    color: var(--bs-link-color);
+    text-decoration: none;
+}
+
+.tabulator .tabulator-header {
+    border-top: none;
+    border-bottom: 1px solid var(--bs-border-color);
+    font-weight: 600;
+    background-color: var(--bs-secondary-bg-subtle);
+}
+
+.tabulator .tabulator-header .tabulator-col {
+    border-right: 1px solid var(--bs-border-color);
+    background-color: var(--bs-body-bg);
+}
+
+.tabulator .tabulator-header .tabulator-col:last-of-type {
+    border-right: none;
+}
+
+.tabulator .tabulator-header .tabulator-col.tabulator-sortable.tabulator-col-sorter-element:hover {
+    background-color: var(--bs-body-bg);
+}
+
+.tabulator .tabulator-header .tabulator-col .tabulator-col-content {
+    padding: 8px;
+}
+
+.tabulator .tabulator-header .tabulator-col .tabulator-col-content .tabulator-col-title {
+    height: 1.1rem;
+}
+
+.tabulator .tabulator-header .tabulator-col .tabulator-col-content .tabulator-header-popup-button {
+    padding-left: 0;
+}
+
+.tabulator .tabulator-header .tabulator-col .tabulator-header-filter {
+    margin-top: 6px;
+}
+
+.tabulator .tabulator-header .tabulator-col .tabulator-header-filter input {
+    padding: 2px 4px !important;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: 4px;
+
+    font-size: var(--font-size-sm);
+    color: var(--bs-body-color);
+
+    appearance: none;
+    background-color: var(--bs-form-control-bg);
+    background-clip: padding-box;
+}
+
+.tabulator .tabulator-header .tabulator-col .tabulator-header-filter input:focus {
+    border-color: #86b7fe;
+
+    color: var(--bs-body-color);
+
+    background-color: var(--bs-form-control-bg);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+
+.tabulator .tabulator-row {
+    min-height: 0;
+    border-bottom: 1px solid var(--bs-border-color);
+    background-color: var(--bs-body-bg);
+}
+
+.tabulator .tabulator-row .tabulator-cell {
+    user-select: text;
+    padding: 6px;
+    border-right: 1px solid var(--bs-border-color);
+}
+
+.tabulator .tabulator-row .tabulator-cell:last-of-type {
+    border-right: none;
+}
+
+.tabulator .tabulator-row .tabulator-cell.tabulator-frozen.tabulator-frozen-left,
+.tabulator .tabulator-header .tabulator-frozen.tabulator-frozen-left {
+    border-right: 1px solid var(--bs-border-color);
+}
+
+.tabulator .tabulator-row .tabulator-cell.tabulator-editing {
+    padding: 0;
+    border: 1px solid #86b7fe;
+}
+
+.tabulator-popup-container {
+    height: auto !important;
+    border-radius: 4px;
+    font-size: var(--font-size-md);
+    background-color: var(--bs-body-bg);
+}
+
+/* 左侧面板 */
+.panel-l .content {
+    overflow: hidden;
+    display: flex;
+    flex: 1;
+}
+
+.panel-l .line-number-gutter {
+    user-select: none;
+
+    overflow-y: hidden;
+
+    min-width: 2em;
+    padding: 4px;
+    border-right: 1px solid var(--bs-border-color);
+
+    font-size: var(--font-size-sm) !important;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    text-align: right;
+    white-space: pre-wrap;
+}
+
+.panel-l textarea.form-control {
+    overflow-x: auto;
+
+    padding: 4px;
+    border: none;
+    border-radius: 0;
+
+    font-size: var(--font-size-sm);
+    white-space: pre;
+}
+
+.panel-l textarea:focus {
+    box-shadow: none;
+}
+
+/* 中间面板 */
+.panel-m {
+    position: relative;
+    overflow-y: auto;
+    background-color: var(--bs-secondary-bg-subtle);
+}
+
+.panel-m .header {
+    background-color: var(--bs-body-bg);
+}
+
+/* 右侧面板 & 手风琴 */
+.panel-r {
+    background-color: var(--bs-secondary-bg-subtle);
+}
+
+.panel-r .accordion {
+    overflow: auto;
+    flex: 1;
+}
+
+.panel-r .accordion-button,
+.panel-r .accordion-body {
+    padding: 12px;
+}
+
+.panel-r .accordion-item {
+    border-right: none;
+    border-left: none;
+}
+
+.panel-r .accordion-item:first-of-type,
+.panel-r .accordion-item:last-of-type,
+.panel-r .accordion-item:first-of-type .accordion-button,
+.panel-r .accordion-item:last-of-type .accordion-button {
+    border-radius: 0;
+}
+
+.panel-r .accordion-item:not(:first-of-type) .accordion-button::after {
+    margin-left: 0;
+}
+
+.panel-r .accordion-button .badge {
+    --bs-badge-padding-x: 8px;
+    --bs-badge-padding-y: 0;
+
+    position: relative;
+
+    height: 1.25rem;
+    margin-right: 16px;
+    margin-left: auto;
+    border-radius: 0.625rem;
+
+    font-size: var(--font-size-sm);
+    line-height: 1.25rem;
+
+    background-color: var(--bs-secondary);
+}
+
+.panel-r .accordion-body .row {
+    gap: 8px;
+}
+
+.panel-r .table-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+}
+
+.panel-r .table-toolbar .btn {
+    display: block;
+    margin-left: 8px;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.panel-r .tabulator {
+    border: 1px solid var(--bs-border-color);
+}
+
+.panel-r .tabulator .tabulator-header .tabulator-col:first-of-type {
+    text-align: center;
+}
+
+.panel-r .tabulator .tabulator-header .tabulator-col:first-of-type input {
+    width: 1rem;
+    height: 1rem;
+}
+
+.panel-r .tabulator .tabulator-row:last-of-type {
+    border: none;
+}
+
+.panel-r .tabulator .tabulator-row .tabulator-cell:first-of-type input {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* 底部状态栏 */
+.statusbar {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid var(--bs-border-color);
+}
+
+.statusbar .icon {
+    margin-right: 8px;
+    padding: 4px 10px;
+    color: #fff;
+    background-color: var(--bs-primary);
+}
+
+/* 复用型模态框 */
+.reusable-modal .modal-content {
+    padding: 12px;
+    border-radius: 4px;
+}
+
+.reusable-modal .loading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reusable-modal .content {
+    overflow-x: auto;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+/* 设置模态框 */
+.settings-modal .modal-content {
+    padding: 16px;
+    border-radius: 4px;
+}
+
+.settings-modal .modal-content .row {
+    gap: 12px;
+}
+
+.settings-modal .modal-footer {
+    margin-top: 12px;
+    padding: 12px 0 0;
+}
+
+.settings-modal .modal-footer .btn {
+    margin: 0 5px;
+}

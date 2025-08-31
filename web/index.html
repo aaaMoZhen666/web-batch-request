@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-bs-theme="light">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Web批量请求器</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/bootstrap-icons.min.css" />
+        <link rel="stylesheet" href="css/tabulator_bootstrap5.min.css" />
+        <link rel="stylesheet" href="css/custom.css" />
+    </head>
+    <body>
+        <div class="menu">
+            <ul class="nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" data-bs-toggle="dropdown"><i class="bi bi-file-earmark"></i> 文件</a>
+                    <ul class="dropdown-menu">
+                        <li><a id="importTargetBtn" class="dropdown-item" href="#">导入目标</a></li>
+                        <li><a id="exportResultBtn" class="dropdown-item" href="#">导出结果</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a id="openSettingsBtn" class="nav-link" href="#"><i class="bi bi-gear"></i> 设置</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-info-circle"></i> 关于</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="toolbar">
+            <button id="runBtn" class="btn btn-primary"><i class="bi bi-play-fill"></i> 运行</button>
+            <button id="pauseBtn" class="btn btn-primary" type="button" hidden><i class="bi bi-pause-fill"></i> 暂停</button>
+            <button id="resumeBtn" class="btn btn-primary" type="button" hidden><i class="bi bi-play-fill"></i> 继续</button>
+            <button id="cancelBtn" class="btn btn-outline-secondary" type="button" disabled><i class="bi bi-x-circle"></i> 取消</button>
+        </div>
+
+        <div class="split">
+            <div id="split-0" class="split-item panel-l">
+                <label class="header" for="targetTextarea">目标</label>
+                <div class="content">
+                    <div id="lineNumberGutter" class="line-number-gutter">1</div>
+                    <textarea id="targetTextarea" class="form-control"></textarea>
+                </div>
+            </div>
+            <div id="split-1" class="split-item panel-m">
+                <label class="header">结果</label>
+                <div id="responsesTable"></div>
+            </div>
+            <div id="split-2" class="split-item panel-r">
+                <div id="accordionContainer" class="accordion">
+                    <div class="accordion-item">
+                        <h2 id="header1" class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">请求基本设置</button>
+                        </h2>
+                        <div id="collapse1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <div class="input-group input-group-sm">
+                                            <label class="input-group-text" for="methodSelect">方法</label>
+                                            <select id="methodSelect" class="form-select form-select-sm">
+                                                <option value="GET">GET</option>
+                                                <option value="POST">POST</option>
+                                                <option value="HEAD">HEAD</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="input-group input-group-sm">
+                                            <label class="input-group-text" for="threadCountInput">线程数</label>
+                                            <input id="threadCountInput" class="form-control" type="number" min="1" max="99" step="1" value="5" />
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="input-group input-group-sm">
+                                            <label class="input-group-text" for="timeoutInput" data-bs-toggle="tooltip" title="单位：秒">超时时间</label>
+                                            <input id="timeoutInput" class="form-control" type="number" min="1" max="99" step="1" value="5" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="input-group input-group-sm">
+                                            <label class="input-group-text" for="pathInput">路径</label>
+                                            <input id="pathInput" class="form-control" type="text" placeholder="/admin" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="input-group input-group-sm">
+                                            <label class="input-group-text col-auto" for="proxyUrlInput">代理</label>
+                                            <input id="proxyUrlInput" class="form-control col" type="text" placeholder="http://username:password@proxy_ip:proxy_port" />
+                                            <button id="verifyProxyBtn" class="btn btn-outline-secondary" type="button">验证</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input id="useProxyCheck" class="form-check-input" type="checkbox" />
+                                            <label class="form-check-label" for="useProxyCheck">使用代理</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input id="followRedirectsCheck" class="form-check-input" type="checkbox" checked />
+                                            <label class="form-check-label" for="followRedirectsCheck">跟随重定向</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 id="header2" class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                                <span>请求查询参数</span>
+                                <span id="queryParamsTableCounter" class="badge">0</span>
+                            </button>
+                        </h2>
+                        <div id="collapse2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div id="queryParamsTableToolbar" class="table-toolbar">
+                                    <button class="btn btn-primary add-btn" type="button" data-bs-toggle="tooltip" title="添加一行"><i class="bi bi-plus-lg"></i></button>
+                                    <button class="btn btn-danger clear-btn" type="button" data-bs-toggle="tooltip" title="清空全部"><i class="bi bi-trash3"></i></button>
+                                    <button class="btn btn-secondary reset-btn" type="button" data-bs-toggle="tooltip" title="恢复默认"><i class="bi bi-bootstrap-reboot"></i></button>
+                                </div>
+                                <div id="queryParamsTable"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 id="heading3" class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                                <span>请求主体参数</span>
+                                <span id="bodyParamsTableCounter" class="badge">0</span>
+                            </button>
+                        </h2>
+                        <div id="collapse3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div id="bodyParamsTableToolbar" class="table-toolbar">
+                                    <button class="btn btn-primary add-btn" type="button" data-bs-toggle="tooltip" title="添加一行"><i class="bi bi-plus-lg"></i></button>
+                                    <button class="btn btn-danger clear-btn" type="button" data-bs-toggle="tooltip" title="清空全部"><i class="bi bi-trash3"></i></button>
+                                    <button class="btn btn-secondary reset-btn" type="button" data-bs-toggle="tooltip" title="恢复默认"><i class="bi bi-bootstrap-reboot"></i></button>
+                                </div>
+                                <div id="bodyParamsTable"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 id="heading4" class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                                <span>请求cookies</span>
+                                <span id="cookiesTableCounter" class="badge">0</span>
+                            </button>
+                        </h2>
+                        <div id="collapse4" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div id="cookiesTableToolbar" class="table-toolbar">
+                                    <button class="btn btn-primary add-btn" type="button" data-bs-toggle="tooltip" title="添加一行"><i class="bi bi-plus-lg"></i></button>
+                                    <button class="btn btn-danger clear-btn" type="button" data-bs-toggle="tooltip" title="清空全部"><i class="bi bi-trash3"></i></button>
+                                    <button class="btn btn-secondary reset-btn" type="button" data-bs-toggle="tooltip" title="恢复默认"><i class="bi bi-bootstrap-reboot"></i></button>
+                                </div>
+                                <div id="cookiesTable"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 id="heading5" class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5">
+                                <span>请求头</span>
+                                <span id="headersTableCounter" class="badge">0</span>
+                            </button>
+                        </h2>
+                        <div id="collapse5" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div id="headersTableToolbar" class="table-toolbar">
+                                    <button class="btn btn-primary add-btn" type="button" data-bs-toggle="tooltip" title="添加一行"><i class="bi bi-plus-lg"></i></button>
+                                    <button class="btn btn-danger clear-btn" type="button" data-bs-toggle="tooltip" title="清空全部"><i class="bi bi-trash3"></i></button>
+                                    <button class="btn btn-secondary reset-btn" type="button" data-bs-toggle="tooltip" title="恢复默认"><i class="bi bi-bootstrap-reboot"></i></button>
+                                </div>
+                                <div id="headersTable"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="statusbar">
+            <div class="icon"><i class="bi bi-activity"></i></div>
+            <label id="statusLabel">空闲</label>
+        </div>
+
+        <div id="reusableModal" class="modal modal-sm fade reusable-modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div id="loadingBox" class="loading">
+                        <span>正在发送测试请求…</span>
+                        <div class="spinner-border text-primary"></div>
+                    </div>
+                    <div id="contentBox" class="content"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="settingsModal" class="modal modal-sm fade settings-modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="input-group input-group-sm">
+                            <label class="input-group-text" for="themeSelect">主题</label>
+                            <select id="themeSelect" class="form-select form-select-sm">
+                                <option value="light">Light</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+                        <div class="input-group input-group-sm">
+                            <label class="input-group-text" for="fontSizeInput">字体大小</label>
+                            <input id="fontSizeInput" class="form-control" type="number" min="8" max="72" step="1" />
+                        </div>
+                        <div class="form-check">
+                            <input id="saveParamsCheck" class="form-check-input" type="checkbox" />
+                            <label class="form-check-label" for="saveParamsCheck">将当前参数保存为预设参数</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">取消</button>
+                        <button id="saveSettingsBtn" class="btn btn-primary" type="button">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/split.min.js"></script>
+        <script src="js/tabulator.min.js"></script>
+        <script src="js/tables.js"></script>
+        <script src="js/utils.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>
