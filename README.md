@@ -46,6 +46,20 @@ Web批量请求器（WebBatchRequest）是一款基于 Python 编写的工具，
 
 - [x] 简单验证代理有效性
 
+## 👁️ 界面预览
+
+### 预览 1
+
+<img width="2560" height="1392" alt="屏幕截图 2025-09-01 194327" src="https://github.com/user-attachments/assets/34d79c45-c8a7-4bbc-8d49-0cf1837b9b05" />
+
+### 预览 2
+
+<img width="2560" height="1392" alt="屏幕截图 2025-09-01 201409" src="https://github.com/user-attachments/assets/b4ca137e-1b50-4f6c-871e-4cdf635d1fb5" />
+
+### 预览 3
+
+<img width="2560" height="1392" alt="censored_image" src="https://github.com/user-attachments/assets/d5947d89-9327-49f0-89a0-77ca14d3db4b" />
+
 ## 🎉 致谢
 
 ### 感谢开源项目
