@@ -4,7 +4,7 @@
 
 ## 🏷️ 项目简介
 
-Web批量请求器（WebBatchRequest）是一款基于 Python 编写的工具，可对目标地址进行快速批量的存活探测，允许自定义 HTTP 请求，支持 HTTP/SOCKS5 代理，适用于批量漏洞验证场景。
+Web批量请求器（WebBatchRequest）是一款基于 Python 编写的轻量工具，可对目标地址进行快速批量的存活探测，允许自定义 HTTP 请求，支持 HTTP/SOCKS5 代理，适用于批量漏洞验证场景。
 
 本项目基于 [WebBatchRequest](https://github.com/ScriptKid-Beta/WebBatchRequest) 和 [WebBatchRequestpro](https://github.com/XF-FS/WebBatchRequestpro) 的设计思路，采用 Python 和 PyWebview 实现，前端结合 Bootstrap 和 Tabulator 构建了现代化交互界面，并新增了多项实用功能。
 
