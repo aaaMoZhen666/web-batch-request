@@ -31,10 +31,10 @@ class API:
         return save_config(self.CONFIG_FILE, data)
 
     def import_target(self):
-        return import_target_file()
+        return import_target_file(main_window)
 
     def export_result(self, data):
-        return export_result_file(data)
+        return export_result_file(main_window, data)
 
     def verify_proxy(self, proxy):
         return verify_proxy(proxy)
