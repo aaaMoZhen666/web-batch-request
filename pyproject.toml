@@ -1,0 +1,18 @@
+[project]
+name = "web-batch-request"
+version = "1.0.0"
+description = "Web批量请求器"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pyyaml>=6.0.2",
+    "pywebview>=6.0",
+    "requests>=2.32.4",
+    "pysocks>=1.7.1",
+    "beautifulsoup4>=4.13.4"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
