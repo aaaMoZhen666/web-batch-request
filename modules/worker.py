@@ -52,8 +52,6 @@ class BatchRequester:
             'timeout': timeout,
         }
 
-        print(f'[DEBUG] Request Config: {request_config}')
-
         # 根据 Content-Type 设置请求体类型
         if headers:
             content_type = next((v for k, v in headers.items() if k.lower() == 'content-type'), None)
@@ -61,6 +59,8 @@ class BatchRequester:
                 request_config['json'] = body_params
             else:
                 request_config['data'] = body_params
+
+        print(f'[DEBUG] Request Config: {request_config}')
 
         # 初始化任务状态、工作线程和结果队列
         self._is_running_event.set()
