@@ -2,9 +2,9 @@
 
 > ⚠️ 本工具仅供安全研究和技术交流，严禁用于非法用途。
 
-## 🏷️ 项目简介
+## 📖 项目简介
 
-Web批量请求器（WebBatchRequest）是一款基于 Python 编写的工具，可对目标地址进行快速批量的存活探测，允许自定义 HTTP 请求，支持 HTTP/SOCKS5 代理，适用于批量漏洞验证场景。
+Web批量请求器（WebBatchRequest）是一款基于 Python 编写的轻量工具，可对目标地址进行快速批量的存活探测，允许自定义 HTTP 请求，支持 HTTP/SOCKS5 代理，适用于批量漏洞验证场景。
 
 本项目基于 [WebBatchRequest](https://github.com/ScriptKid-Beta/WebBatchRequest) 和 [WebBatchRequestpro](https://github.com/XF-FS/WebBatchRequestpro) 的设计思路，采用 Python 和 PyWebview 实现，前端结合 Bootstrap 和 Tabulator 构建了现代化交互界面，并新增了多项实用功能。
 
@@ -46,7 +46,7 @@ Web批量请求器（WebBatchRequest）是一款基于 Python 编写的工具，
 
 - [x] 简单验证代理有效性
 
-## 👁️ 界面预览
+## 🖥️ 界面预览
 
 ### 预览 1
 
@@ -60,7 +60,7 @@ Web批量请求器（WebBatchRequest）是一款基于 Python 编写的工具，
 
 <img width="2560" height="1392" alt="censored_image" src="https://github.com/user-attachments/assets/d5947d89-9327-49f0-89a0-77ca14d3db4b" />
 
-## 🎉 致谢
+## 🙏 致谢
 
 ### 感谢开源项目
 
@@ -75,3 +75,7 @@ Web批量请求器（WebBatchRequest）是一款基于 Python 编写的工具，
 | [tabulator](https://github.com/olifolkerd/tabulator)                 | 创建交互式表格         |
 | [split](https://github.com/nathancahill/split)                       | 实现可调节的面板        |
 
+## 📬 贡献 & 反馈
+
+欢迎 Star ⭐ 支持！  
+如果您有任何建议或发现了 Bug，请在 [Issues](https://github.com/aaaMoZhen666/web-batch-request/issues) 中提出。
