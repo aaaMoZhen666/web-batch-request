@@ -61,8 +61,6 @@ const appStore = {
     tables: {}
 }
 
-document.addEventListener('DOMContentLoaded', initApp)
-
 /**
  * 初始化 Split.js 面板布局
  */
@@ -86,13 +84,6 @@ function initTooltips() {
  */
 async function loadSettings() {
     try {
-        // 确保 API 接口存在
-        let retries = 0
-        while (!window.pywebview?.api && retries < 10) {
-            await new Promise((resolve) => setTimeout(resolve, 100))
-            retries++
-        }
-
         appStore.settings = await window.pywebview.api.load_config()
 
         const root = document.documentElement
