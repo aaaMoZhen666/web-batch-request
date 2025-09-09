@@ -1,18 +1,23 @@
 [project]
 name = "web-batch-request"
-version = "1.0.0"
+version = "0.1.0"
 description = "Web批量请求器"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">= 3.11"
 dependencies = [
-    "pyyaml>=6.0.2",
-    "pywebview>=6.0",
-    "requests>=2.32.4",
-    "pysocks>=1.7.1",
-    "beautifulsoup4>=4.13.4"
+    "pywebview>=6.0,<7",
+    "requests[socks]>=2.32.5,<3",
+    "pyyaml>=6.0.2,<7",
+    "beautifulsoup4>=4.13.5,<5",
 ]
 
-
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["win-64"]
+
+[tool.pixi.dependencies]
+python = "3.11.*"
