@@ -49,5 +49,5 @@ if __name__ == '__main__':
     main_window = webview.create_window(title='Web批量请求器', url='web/index.html', js_api=api, width=1440, height=960)
     api.requester.set_ui_window(main_window)
     main_window.events.loaded += on_loaded
-    webview.start(debug=True)
-    # webview.start()
+    # webview.start(debug=True)
+    webview.start()

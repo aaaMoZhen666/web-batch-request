@@ -197,7 +197,6 @@ const myApp = (function () {
             --font-size-md: ${appStore.settings.display.fontSize}px;
             --font-size-lg: ${appStore.settings.display.fontSize + 2}px;
         `
-
             const tableTypes = ['queryParams', 'bodyParams', 'cookies', 'headers']
             tableTypes.forEach((type) => {
                 appStore.tables[type].updateDefaultData(appStore.settings.requestPresets[type])
