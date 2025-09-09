@@ -39,13 +39,15 @@ class API:
     def verify_proxy(self, proxy):
         return verify_proxy(proxy)
 
+
 def on_loaded(window):
-    window.evaluate_js("initApp()")
+    window.evaluate_js('myApp.loadSettings()')
+
 
 if __name__ == '__main__':
     api = API()
     main_window = webview.create_window(title='Web批量请求器', url='web/index.html', js_api=api, width=1440, height=960)
     api.requester.set_ui_window(main_window)
     main_window.events.loaded += on_loaded
-    # webview.start(debug=True)
-    webview.start()
+    webview.start(debug=True)
+    # webview.start()

@@ -185,8 +185,8 @@ class BatchRequester:
 
     def _send_results_to_ui(self, results):
         """发送请求结果到前端表格"""
-        self._ui_window.evaluate_js(f'window.appendResponseData({json.dumps(results)})')
+        self._ui_window.evaluate_js(f'myApp.appendResponseData({json.dumps(results)})')
 
     def _update_ui_status(self, status_key):
         """更新前端任务状态"""
-        self._ui_window.evaluate_js(f'window.updateTaskStatus({json.dumps(status_key)})')
+        self._ui_window.evaluate_js(f'myApp.updateTaskStatus({json.dumps(status_key)})')
