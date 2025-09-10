@@ -177,33 +177,23 @@
             rowContextMenu: [
                 {
                     label: '标记为红色',
-                    action: (e, row) => {
-                        row.getElement().style.backgroundColor = 'var(--bs-danger-border-subtle)'
-                    }
+                    action: (e, row) => (row.getElement().style.backgroundColor = 'var(--bs-danger-border-subtle)')
                 },
                 {
                     label: '标记为黄色',
-                    action: (e, row) => {
-                        row.getElement().style.backgroundColor = 'var(--bs-warning-border-subtle)'
-                    }
+                    action: (e, row) => (row.getElement().style.backgroundColor = 'var(--bs-warning-border-subtle)')
                 },
                 {
                     label: '标记为绿色',
-                    action: (e, row) => {
-                        row.getElement().style.backgroundColor = 'var(--bs-success-border-subtle)'
-                    }
+                    action: (e, row) => (row.getElement().style.backgroundColor = 'var(--bs-success-border-subtle)')
                 },
                 {
                     label: '标记为蓝色',
-                    action: (e, row) => {
-                        row.getElement().style.backgroundColor = 'var(--bs-primary-border-subtle)'
-                    }
+                    action: (e, row) => (row.getElement().style.backgroundColor = 'var(--bs-primary-border-subtle)')
                 },
                 {
                     label: '恢复默认颜色',
-                    action: (e, row) => {
-                        row.getElement().style.backgroundColor = ''
-                    }
+                    action: (e, row) => (row.getElement().style.backgroundColor = '')
                 }
             ],
             popupContainer: '#split-1'
